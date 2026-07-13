@@ -1,0 +1,65 @@
+.link-box {
+    display: block;
+    padding: 15px;
+    text-align: center;
+}
+
+#new-tab-link {
+    background-color: lightgreen;
+}
+
+#same-page-link {
+    background-color: #555555;
+}
+
+#normal-link {
+    background-color: black;
+}
+
+.link-box a:link {
+    color: white;
+}
+
+.link-box a:visited {
+    color: yellow;
+}
+
+.link-box a:hover {
+    color: red;
+}
+
+.link-box a:active {
+    color: blue;
+}
+.format-title {
+    color: green;
+    background-color: lightyellow;
+    padding: 10px;
+}
+.listing-title {
+    color: white;
+    background-color: cadetblue;
+    padding: 10px;
+}
+.table-section {
+    text-align: center;
+}
+
+.fruit-table,
+.camel-table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+.fruit-table th,
+.fruit-table td,
+.camel-table th,
+.camel-table td {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+caption {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
