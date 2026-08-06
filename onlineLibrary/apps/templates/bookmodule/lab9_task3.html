@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 9 Task 3{% endblock title %}
+
+{% block content %}
+
+<h1>Oldest Student in Each Department</h1>
+
+<table border="1">
+    <tr>
+        <th>Department</th>
+        <th>Oldest Student by ID</th>
+    </tr>
+
+    {% for item in results %}
+    <tr>
+        <td>{{ item.department.name }}</td>
+        <td>
+            {% if item.oldest_student %}
+                {{ item.oldest_student.name }}
+            {% else %}
+                No students
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

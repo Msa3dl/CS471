@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 9 Task 2{% endblock title %}
+
+{% block content %}
+
+<h1>Courses and Number of Students</h1>
+
+<table border="1">
+    <tr>
+        <th>Course</th>
+        <th>Code</th>
+        <th>Number of Students</th>
+    </tr>
+
+    {% for course in courses %}
+    <tr>
+        <td>{{ course.title }}</td>
+        <td>{{ course.code }}</td>
+        <td>{{ course.student_count }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No courses found.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

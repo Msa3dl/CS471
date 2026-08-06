@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q, Count, Sum, Avg, Max, Min
-from .models import Book, Address
-
+from .models import Book, Card, Department, Course, Student
 def index(request):
     return render(request, "bookmodule/index.html")
 
@@ -148,4 +147,57 @@ def students_per_city(request):
         request,
         'bookmodule/studentsPerCity.html',
         {'cities': cities}
+    )
+def lab9_task1(request):
+    departments = Department.objects.annotate(
+        student_count=Count('students')
+    )
+    return render(
+        request,
+        'bookmodule/lab9_task1.html',
+        {'departments': departments}
+    )
+
+
+def lab9_task2(request):
+    courses = Course.objects.annotate(
+        student_count=Count('students')
+    )
+    return render(
+        request,
+        'bookmodule/lab9_task2.html',
+        {'courses': courses}
+    )
+
+
+def lab9_task3(request):
+    departments = Department.objects.prefetch_related('students')
+
+    results = []
+    for department in departments:
+        oldest_student = department.students.order_by('id').first()
+        results.append({
+            'department': department,
+            'oldest_student': oldest_student
+        })
+
+    return render(
+        request,
+        'bookmodule/lab9_task3.html',
+        {'results': results}
+    )
+
+
+def lab9_task4(request):
+    departments = (
+        Department.objects
+        .annotate(student_count=Count('students'))
+        .filter(student_count__gt=2)
+        .order_by('-student_count')
+    )
+
+    return render(
+        request,
+        'bookmodule/lab9_task4.html',
+        {'departments': departments}
     )
