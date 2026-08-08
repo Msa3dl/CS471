@@ -1,0 +1,45 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Products List{% endblock title %}
+
+{% block content %}
+
+<h1>Products List</h1>
+
+<a href="{% url 'books.lab11_task3_add' %}">Add New Product</a>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for product in products %}
+    <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>
+            {% if product.image %}
+                <img src="{{ product.image.url }}" width="120">
+            {% else %}
+                No image
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'books.lab11_task3_edit' product.id %}">Edit</a>
+            |
+            <a href="{% url 'books.lab11_task3_delete' product.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">No products found.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

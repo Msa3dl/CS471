@@ -60,3 +60,43 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+class Address11(models.Model):
+    city = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.city
+
+
+class Student11(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.ForeignKey(
+        Address11,
+        on_delete=models.CASCADE,
+        related_name='students'
+    )
+
+    def __str__(self):
+        return self.name
+class Address12(models.Model):
+    city = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.city
+
+
+class Student12(models.Model):
+    name = models.CharField(max_length=100)
+
+    addresses = models.ManyToManyField(
+        Address12,
+        related_name='students'
+    )
+
+    def __str__(self):
+        return self.name
+class Product11(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='lab11_images/')
+
+    def __str__(self):
+        return self.name

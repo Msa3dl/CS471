@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Count, Sum, Avg, Max, Min
-from .models import Book, Card, Department, Course, Student
-from .forms import BookForm
+from .models import Book, Card, Department, Course, Student, Student11, Address11, Student12, Address12, Product11
+from .forms import BookForm, Student11Form, Student12Form, Product11Form
+
 def index(request):
     return render(request, "bookmodule/index.html")
 
@@ -304,3 +305,157 @@ def lab10_part2_deletebook(request, id):
     book.delete()
 
     return redirect('books.lab10_part2_listbooks')
+def lab11_task1_list(request):
+    students = Student11.objects.all()
+    return render(
+        request,
+        'bookmodule/lab11_task1_list.html',
+        {'students': students}
+    )
+
+
+def lab11_task1_add(request):
+    if request.method == 'POST':
+        form = Student11Form(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task1_list')
+    else:
+        form = Student11Form()
+
+    return render(
+        request,
+        'bookmodule/lab11_task1_form.html',
+        {'form': form}
+    )
+
+
+def lab11_task1_edit(request, id):
+    student = get_object_or_404(Student11, id=id)
+
+    if request.method == 'POST':
+        form = Student11Form(request.POST, instance=student)
+
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task1_list')
+    else:
+        form = Student11Form(instance=student)
+
+    return render(
+        request,
+        'bookmodule/lab11_task1_form.html',
+        {'form': form, 'student': student}
+    )
+
+
+def lab11_task1_delete(request, id):
+    student = get_object_or_404(Student11, id=id)
+    student.delete()
+
+    return redirect('books.lab11_task1_list')
+def lab11_task2_list(request):
+    students = Student12.objects.all()
+    return render(
+        request,
+        'bookmodule/lab11_task2_list.html',
+        {'students': students}
+    )
+
+
+def lab11_task2_add(request):
+    if request.method == 'POST':
+        form = Student12Form(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task2_list')
+    else:
+        form = Student12Form()
+
+    return render(
+        request,
+        'bookmodule/lab11_task2_form.html',
+        {'form': form}
+    )
+
+
+def lab11_task2_edit(request, id):
+    student = get_object_or_404(Student12, id=id)
+
+    if request.method == 'POST':
+        form = Student12Form(request.POST, instance=student)
+
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task2_list')
+    else:
+        form = Student12Form(instance=student)
+
+    return render(
+        request,
+        'bookmodule/lab11_task2_form.html',
+        {'form': form, 'student': student}
+    )
+
+
+def lab11_task2_delete(request, id):
+    student = get_object_or_404(Student12, id=id)
+    student.delete()
+
+    return redirect('books.lab11_task2_list')
+def lab11_task3_list(request):
+    products = Product11.objects.all()
+    return render(
+        request,
+        'bookmodule/lab11_task3_list.html',
+        {'products': products}
+    )
+
+
+def lab11_task3_add(request):
+    if request.method == 'POST':
+        form = Product11Form(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task3_list')
+    else:
+        form = Product11Form()
+
+    return render(
+        request,
+        'bookmodule/lab11_task3_form.html',
+        {'form': form}
+    )
+
+
+def lab11_task3_edit(request, id):
+    product = get_object_or_404(Product11, id=id)
+
+    if request.method == 'POST':
+        form = Product11Form(
+            request.POST,
+            request.FILES,
+            instance=product
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task3_list')
+    else:
+        form = Product11Form(instance=product)
+
+    return render(
+        request,
+        'bookmodule/lab11_task3_form.html',
+        {'form': form, 'product': product}
+    )
+
+
+def lab11_task3_delete(request, id):
+    product = get_object_or_404(Product11, id=id)
+    product.delete()
+
+    return redirect('books.lab11_task3_list')
