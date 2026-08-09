@@ -47,4 +47,9 @@ path('lab11/task3/products', views.lab11_task3_list, name='books.lab11_task3_lis
 path('lab11/task3/products/add', views.lab11_task3_add, name='books.lab11_task3_add'),
 path('lab11/task3/products/edit/<int:id>', views.lab11_task3_edit, name='books.lab11_task3_edit'),
 path('lab11/task3/products/delete/<int:id>', views.lab11_task3_delete, name='books.lab11_task3_delete'),
+path('lab12/task1', views.lab13_task1, name='books.lab13_task1'),
+path('lab12/task2', views.lab13_task2, name='books.lab13_task2'),
+path('lab12/task3', views.lab13_task3, name='books.lab13_task3'),
+path('lab12/task4', views.lab13_task4, name='books.lab13_task4'),
+path('lab12/task5', views.lab13_task5, name='books.lab13_task5'),
 ]

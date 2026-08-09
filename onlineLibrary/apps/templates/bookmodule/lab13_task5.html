@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 13 Task 5{% endblock title %}
+
+{% block content %}
+
+<h1>Lab 13 - Task 5</h1>
+
+<div id="tableContainer"></div>
+
+<script>
+let table = document.createElement("table");
+table.setAttribute("border", "1");
+
+let headerRow = document.createElement("tr");
+
+let headers = ["ID", "Name", "Major"];
+
+for (let i = 0; i < headers.length; i++) {
+    let th = document.createElement("th");
+    th.innerHTML = headers[i];
+    headerRow.appendChild(th);
+}
+
+table.appendChild(headerRow);
+
+let data = [
+    ["1", "Ahmed", "Computer Science"],
+    ["2", "Khalid", "Information Technology"],
+    ["3", "Fahad", "Computer Science"]
+];
+
+for (let i = 0; i < data.length; i++) {
+    let row = document.createElement("tr");
+
+    for (let j = 0; j < data[i].length; j++) {
+        let cell = document.createElement("td");
+        cell.innerHTML = data[i][j];
+        row.appendChild(cell);
+    }
+
+    table.appendChild(row);
+}
+
+document.getElementById("tableContainer").appendChild(table);
+</script>
+
+{% endblock content %}

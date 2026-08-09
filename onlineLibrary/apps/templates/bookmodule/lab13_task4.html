@@ -1,0 +1,30 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 13 Task 4{% endblock title %}
+
+{% block content %}
+
+<h1>Lab 13 - Task 4</h1>
+
+<div id="hoverDiv"
+     style="width:300px; padding:20px; border:1px solid black;"
+     onmouseover="changeStyle()"
+     onmouseout="resetStyle()">
+    Move the mouse over this div.
+</div>
+
+<script>
+function changeStyle() {
+    let element = document.getElementById("hoverDiv");
+    element.style.backgroundColor = "lightgreen";
+    element.style.fontSize = "30px";
+}
+
+function resetStyle() {
+    let element = document.getElementById("hoverDiv");
+    element.style.backgroundColor = "";
+    element.style.fontSize = "";
+}
+</script>
+
+{% endblock content %}

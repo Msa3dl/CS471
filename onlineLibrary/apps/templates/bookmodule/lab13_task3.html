@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 13 Task 3{% endblock title %}
+
+{% block content %}
+
+<h1>Lab 13 - Task 3</h1>
+
+<button onclick="toggleDiv()">Hide / Show</button>
+
+<br><br>
+
+<div id="myDiv" style="padding:20px; border:1px solid black; width:300px;">
+    This div can be hidden and shown.
+</div>
+
+<script>
+function toggleDiv() {
+    let element = document.getElementById("myDiv");
+
+    if (element.style.display === "none") {
+        element.style.display = "block";
+    } else {
+        element.style.display = "none";
+    }
+}
+</script>
+
+{% endblock content %}

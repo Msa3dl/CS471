@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 13 Task 2{% endblock title %}
+
+{% block content %}
+
+<h1>Lab 13 - Task 2</h1>
+
+<ul id="myList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+
+<button onclick="addItem()">Add New Item</button>
+
+<script>
+let itemNumber = 3;
+
+function addItem() {
+    let newItem = document.createElement("li");
+    newItem.innerHTML = "Item " + itemNumber;
+
+    document.getElementById("myList").appendChild(newItem);
+
+    itemNumber++;
+}
+</script>
+
+{% endblock content %}

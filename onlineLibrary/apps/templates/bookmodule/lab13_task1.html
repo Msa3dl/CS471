@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lab 13 Task 1{% endblock title %}
+
+{% block content %}
+
+<h1>Lab 13 - Task 1</h1>
+
+<div id="myDiv" style="width:300px; padding:20px; border:1px solid black;">
+    This is the original text.
+</div>
+
+<br>
+
+<button onclick="changeColor()">Change Background Color</button>
+
+<button onclick="changeText()">Change Text</button>
+
+<script>
+function changeColor() {
+    document.getElementById("myDiv").style.backgroundColor = "lightblue";
+}
+
+function changeText() {
+    document.getElementById("myDiv").innerHTML = "The text has been changed!";
+}
+</script>
+
+{% endblock content %}
