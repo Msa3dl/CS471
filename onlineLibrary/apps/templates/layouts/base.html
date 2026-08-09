@@ -18,6 +18,24 @@
 
   {% include "includes/header.html" %}
 
+{% if user.is_authenticated %}
+    <p>
+        Welcome, {{ user.username }} |
+        <a href="{% url 'users.logout' %}">Logout</a>
+    </p>
+{% else %}
+    <p>
+        <a href="{% url 'users.login' %}">Login</a> |
+        <a href="{% url 'users.register' %}">Register</a>
+    </p>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
   {% block content %}{% endblock content %}
 
   {% include "includes/footer.html" %}

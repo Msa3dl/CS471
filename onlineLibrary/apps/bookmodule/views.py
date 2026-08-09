@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Count, Sum, Avg, Max, Min
 from .models import Book, Card, Department, Course, Student, Student11, Address11, Student12, Address12, Product11
 from .forms import BookForm, Student11Form, Student12Form, Product11Form
-
+from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, "bookmodule/index.html")
 
@@ -303,8 +303,10 @@ def lab10_part2_editbook(request, id):
 def lab10_part2_deletebook(request, id):
     book = get_object_or_404(Book, id=id)
     book.delete()
-
     return redirect('books.lab10_part2_listbooks')
+
+
+@login_required(login_url='/users/login')
 def lab11_task1_list(request):
     students = Student11.objects.all()
     return render(
@@ -313,7 +315,7 @@ def lab11_task1_list(request):
         {'students': students}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task1_add(request):
     if request.method == 'POST':
         form = Student11Form(request.POST)
@@ -330,7 +332,7 @@ def lab11_task1_add(request):
         {'form': form}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task1_edit(request, id):
     student = get_object_or_404(Student11, id=id)
 
@@ -349,12 +351,14 @@ def lab11_task1_edit(request, id):
         {'form': form, 'student': student}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task1_delete(request, id):
     student = get_object_or_404(Student11, id=id)
     student.delete()
 
     return redirect('books.lab11_task1_list')
+
+@login_required(login_url='/users/login')
 def lab11_task2_list(request):
     students = Student12.objects.all()
     return render(
@@ -363,7 +367,7 @@ def lab11_task2_list(request):
         {'students': students}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task2_add(request):
     if request.method == 'POST':
         form = Student12Form(request.POST)
@@ -380,7 +384,7 @@ def lab11_task2_add(request):
         {'form': form}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task2_edit(request, id):
     student = get_object_or_404(Student12, id=id)
 
@@ -399,12 +403,14 @@ def lab11_task2_edit(request, id):
         {'form': form, 'student': student}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task2_delete(request, id):
     student = get_object_or_404(Student12, id=id)
     student.delete()
 
     return redirect('books.lab11_task2_list')
+
+@login_required(login_url='/users/login')
 def lab11_task3_list(request):
     products = Product11.objects.all()
     return render(
@@ -413,7 +419,7 @@ def lab11_task3_list(request):
         {'products': products}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task3_add(request):
     if request.method == 'POST':
         form = Product11Form(request.POST, request.FILES)
@@ -430,7 +436,7 @@ def lab11_task3_add(request):
         {'form': form}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task3_edit(request, id):
     product = get_object_or_404(Product11, id=id)
 
@@ -453,7 +459,7 @@ def lab11_task3_edit(request, id):
         {'form': form, 'product': product}
     )
 
-
+@login_required(login_url='/users/login')
 def lab11_task3_delete(request, id):
     product = get_object_or_404(Product11, id=id)
     product.delete()
